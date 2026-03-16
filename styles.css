@@ -22,8 +22,10 @@ body {
 .page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 3rem;
   padding: 1.5rem;
 }
 
@@ -77,6 +79,93 @@ body {
 .linkedin-link:active {
   transform: translateY(0);
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+}
+
+/* GitHub recent commits widget */
+.github-widget {
+  width: 100%;
+  max-width: 420px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.github-widget-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.github-commit-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.github-commit-item {
+  margin: 0;
+  padding: 0;
+}
+
+.github-commit-link {
+  display: block;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.15s ease;
+}
+
+.github-commit-item:last-child .github-commit-link {
+  border-bottom: none;
+}
+
+.github-commit-link:hover {
+  color: #f9fafb;
+}
+
+.github-commit-repo {
+  display: block;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 0.2rem;
+}
+
+.github-commit-message {
+  display: block;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.github-commit-meta {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.github-widget-error {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.github-widget-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+.github-widget-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {
