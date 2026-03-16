@@ -209,7 +209,7 @@
         }
 
         var snippets = {
-          idle: '<span class="com">// Waiting for input...</span>\n<span class="kw">const</span> <span class="fn">comingSoon</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>',
+          idle: '<span class="com">// Waiting for input...</span>\n<span class="kw">const</span> <span class="fn">waitingForInput</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>',
           mousemove: function (x, y) {
             return '<span class="fn">window</span><span class="op">.</span><span class="fn">addEventListener</span><span class="op">(</span><span class="str">\'mousemove\'</span><span class="op">,</span> <span class="fn">e</span> <span class="op">=&gt;</span> <span class="op">{</span>\n  <span class="fn">console</span><span class="op">.</span><span class="fn">log</span><span class="op">(</span><span class="fn">e</span><span class="op">.</span><span class="fn">clientX</span><span class="op">,</span> <span class="fn">e</span><span class="op">.</span><span class="fn">clientY</span><span class="op">);</span>\n<span class="op">});</span>\n<span class="com">// ' + x + ', ' + y + '</span>';
           },
