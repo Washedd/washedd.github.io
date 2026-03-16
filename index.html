@@ -80,6 +80,45 @@
         font-size: clamp(0.95rem, 2vw, 1rem);
         color: #aaa;
       }
+      .interactive-code {
+        max-width: 520px;
+        margin: 1.5rem auto;
+        background: #0d0d0d;
+        border: 1px solid #2a2a2a;
+        border-radius: 8px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.06);
+        overflow: hidden;
+        text-align: left;
+      }
+      .interactive-code .title-bar {
+        padding: 6px 12px;
+        font-size: 12px;
+        color: #6a6a6a;
+        background: #1a1a1a;
+        border-bottom: 1px solid #2a2a2a;
+        font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+      }
+      .interactive-code pre {
+        margin: 0;
+        padding: 1rem 1.25rem;
+        font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        color: #d4d4d4;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .interactive-code #live-code {
+        display: block;
+        transition: opacity 0.15s ease;
+      }
+      .interactive-code #live-code .kw { color: #569cd6; }
+      .interactive-code #live-code .fn { color: #dcdcaa; }
+      .interactive-code #live-code .num { color: #b5cea8; }
+      .interactive-code #live-code .str { color: #ce9178; }
+      .interactive-code #live-code .com { color: #6a9955; }
+      .interactive-code #live-code .op { color: #d4d4d4; }
+      .interactive-code #live-code .pn { color: #ffd700; }
     </style>
   </head>
   <body>
@@ -94,7 +133,6 @@
 <span class="kw">import</span> <span class="fn">x</span> <span class="kw">from</span> <span class="str">''</span><span class="op">;</span></div>
       <div class="code-column"><span class="op">=></span> <span class="op">{ }</span>
 <span class="op">{ }</span> <span class="op">[ ]</span>
-<span class="com">/* */</span>
 <span class="num">0x1</span> <span class="kw">null</span> <span class="kw">undefined</span></div>
       <div class="code-column"><span class="kw">async</span> <span class="kw">await</span>
 <span class="fn">Promise</span>
@@ -108,13 +146,11 @@
 <span class="num">1</span> <span class="num">0</span> <span class="op">[]</span> <span class="op">{}</span></div>
       <div class="code-column"><span class="fn">fn</span><span class="op">()</span> <span class="op">=></span>
 <span class="op">&lt;/</span></div>
-      <div class="code-column"><span class="com">&lt;!-- HTML --&gt;</span>
-<span class="op">&lt;</span><span class="fn">div</span> <span class="fn">class</span><span class="op">=</span><span class="str">"container"</span><span class="op">&gt;</span>
+      <div class="code-column"><span class="op">&lt;</span><span class="fn">div</span> <span class="fn">class</span><span class="op">=</span><span class="str">"container"</span><span class="op">&gt;</span>
 <span class="op">&lt;</span><span class="fn">button</span> <span class="fn">onClick</span><span class="op">=</span><span class="str">"{handler}"</span><span class="op">&gt;</span>
 <span class="op">&lt;/</span><span class="fn">div</span><span class="op">&gt;</span>
 <span class="op">&lt;</span><span class="fn">span</span><span class="op">&gt;</span> <span class="op">&lt;/</span><span class="fn">span</span><span class="op">&gt;</span></div>
-      <div class="code-column"><span class="com">/* CSS */</span>
-<span class="op">.</span><span class="fn">card</span> <span class="op">{</span>
+      <div class="code-column"><span class="op">.</span><span class="fn">card</span> <span class="op">{</span>
   <span class="fn">display</span><span class="op">:</span> <span class="kw">flex</span><span class="op">;</span>
   <span class="fn">margin</span><span class="op">:</span> <span class="num">1rem</span> <span class="num">0</span><span class="op">;</span>
 <span class="op">}</span>
@@ -128,6 +164,71 @@
     <main>
       <h1>Coming soon</h1>
       <p>We're working on something. Check back later.</p>
+      <div class="interactive-code" role="presentation" aria-hidden="true">
+        <div class="title-bar">live.js</div>
+        <pre><code id="live-code"><span class="com">// Move, click, or type — watch the code change</span></code></pre>
+      </div>
     </main>
+    <script>
+      (function () {
+        var liveCode = document.getElementById('live-code');
+        var IDLE_MS = 3000;
+        var throttleMs = 120;
+        var lastMove = 0;
+        var idleTimer = null;
+
+        function setHtml(html) {
+          liveCode.style.opacity = '0';
+          requestAnimationFrame(function () {
+            liveCode.innerHTML = html;
+            requestAnimationFrame(function () {
+              liveCode.style.opacity = '1';
+            });
+          });
+        }
+
+        var snippets = {
+          idle: '<span class="com">// Waiting for input...</span>\n<span class="kw">const</span> <span class="fn">comingSoon</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>',
+          mousemove: function (x, y) {
+            return '<span class="fn">window</span><span class="op">.</span><span class="fn">addEventListener</span><span class="op">(</span><span class="str">\'mousemove\'</span><span class="op">,</span> <span class="fn">e</span> <span class="op">=&gt;</span> <span class="op">{</span>\n  <span class="fn">console</span><span class="op">.</span><span class="fn">log</span><span class="op">(</span><span class="fn">e</span><span class="op">.</span><span class="fn">clientX</span><span class="op">,</span> <span class="fn">e</span><span class="op">.</span><span class="fn">clientY</span><span class="op">);</span>\n<span class="op">});</span>\n<span class="com">// ' + x + ', ' + y + '</span>';
+          },
+          click: '<span class="fn">element</span><span class="op">.</span><span class="fn">addEventListener</span><span class="op">(</span><span class="str">\'click\'</span><span class="op">,</span> <span class="fn">handler</span><span class="op">);</span>\n<span class="com">// or</span>\n<span class="op">&lt;</span><span class="fn">button</span> <span class="fn">onClick</span><span class="op">=</span><span class="str">"{handler}"</span><span class="op">&gt;</span>',
+          keydown: function (key) {
+            var k = key === ' ' ? 'Space' : key;
+            var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+            var kEsc = esc(k);
+            return '<span class="fn">document</span><span class="op">.</span><span class="fn">addEventListener</span><span class="op">(</span><span class="str">\'keydown\'</span><span class="op">,</span> <span class="fn">e</span> <span class="op">=&gt;</span> <span class="op">{</span>\n  <span class="kw">if</span> <span class="op">(</span><span class="fn">e</span><span class="op">.</span><span class="fn">key</span> <span class="op">===</span> <span class="str">\'<span class="str">' + kEsc + '</span>\'</span><span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span>\n<span class="op">});</span>\n<span class="com">// key: ' + kEsc + '</span>';
+          }
+        };
+
+        function scheduleIdle() {
+          if (idleTimer) clearTimeout(idleTimer);
+          idleTimer = setTimeout(function () {
+            setHtml(snippets.idle);
+            idleTimer = null;
+          }, IDLE_MS);
+        }
+
+        window.addEventListener('mousemove', function (e) {
+          var now = Date.now();
+          if (now - lastMove < throttleMs) return;
+          lastMove = now;
+          setHtml(snippets.mousemove(e.clientX, e.clientY));
+          scheduleIdle();
+        });
+
+        window.addEventListener('click', function () {
+          setHtml(snippets.click);
+          scheduleIdle();
+        });
+
+        document.addEventListener('keydown', function (e) {
+          setHtml(snippets.keydown(e.key));
+          scheduleIdle();
+        });
+
+        scheduleIdle();
+      })();
+    </script>
   </body>
 </html>
