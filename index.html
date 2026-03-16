@@ -45,13 +45,16 @@
       .code-column .com { color: #6a9955; }
       .code-column .op { color: #d4d4d4; }
       .code-column .pn { color: #ffd700; }
-      .code-column:nth-child(1) { left: 5%; animation-duration: 18s; animation-delay: 0s; }
-      .code-column:nth-child(2) { left: 18%; animation-duration: 22s; animation-delay: -4s; }
-      .code-column:nth-child(3) { left: 32%; animation-duration: 16s; animation-delay: -2s; }
-      .code-column:nth-child(4) { left: 48%; animation-duration: 24s; animation-delay: -7s; }
-      .code-column:nth-child(5) { left: 62%; animation-duration: 19s; animation-delay: -1s; }
-      .code-column:nth-child(6) { left: 78%; animation-duration: 21s; animation-delay: -5s; }
-      .code-column:nth-child(7) { left: 90%; animation-duration: 17s; animation-delay: -3s; }
+      .code-column:nth-child(1) { left: 3%; animation-duration: 18s; animation-delay: 0s; }
+      .code-column:nth-child(2) { left: 14%; animation-duration: 22s; animation-delay: -4s; }
+      .code-column:nth-child(3) { left: 25%; animation-duration: 16s; animation-delay: -2s; }
+      .code-column:nth-child(4) { left: 36%; animation-duration: 24s; animation-delay: -7s; }
+      .code-column:nth-child(5) { left: 47%; animation-duration: 19s; animation-delay: -1s; }
+      .code-column:nth-child(6) { left: 58%; animation-duration: 21s; animation-delay: -5s; }
+      .code-column:nth-child(7) { left: 69%; animation-duration: 17s; animation-delay: -3s; }
+      .code-column:nth-child(8) { left: 78%; animation-duration: 20s; animation-delay: -6s; }
+      .code-column:nth-child(9) { left: 85%; animation-duration: 15s; animation-delay: -8s; }
+      .code-column:nth-child(10) { left: 92%; animation-duration: 23s; animation-delay: -1s; }
       @keyframes codeFall {
         from {
           transform: translateY(0);
@@ -105,6 +108,22 @@
 <span class="num">1</span> <span class="num">0</span> <span class="op">[]</span> <span class="op">{}</span></div>
       <div class="code-column"><span class="fn">fn</span><span class="op">()</span> <span class="op">=></span>
 <span class="op">&lt;/</span></div>
+      <div class="code-column"><span class="com">&lt;!-- HTML --&gt;</span>
+<span class="op">&lt;</span><span class="fn">div</span> <span class="fn">class</span><span class="op">=</span><span class="str">"container"</span><span class="op">&gt;</span>
+<span class="op">&lt;</span><span class="fn">button</span> <span class="fn">onClick</span><span class="op">=</span><span class="str">"{handler}"</span><span class="op">&gt;</span>
+<span class="op">&lt;/</span><span class="fn">div</span><span class="op">&gt;</span>
+<span class="op">&lt;</span><span class="fn">span</span><span class="op">&gt;</span> <span class="op">&lt;/</span><span class="fn">span</span><span class="op">&gt;</span></div>
+      <div class="code-column"><span class="com">/* CSS */</span>
+<span class="op">.</span><span class="fn">card</span> <span class="op">{</span>
+  <span class="fn">display</span><span class="op">:</span> <span class="kw">flex</span><span class="op">;</span>
+  <span class="fn">margin</span><span class="op">:</span> <span class="num">1rem</span> <span class="num">0</span><span class="op">;</span>
+<span class="op">}</span>
+<span class="op">@</span><span class="kw">media</span> <span class="op">(</span><span class="fn">min-width</span><span class="op">:</span> <span class="num">768px</span><span class="op">)</span></div>
+      <div class="code-column"><span class="kw">useState</span> <span class="kw">useEffect</span>
+<span class="fn">fetch</span><span class="op">(</span><span class="str">'/api'</span><span class="op">)</span><span class="op">.</span><span class="fn">then</span>
+<span class="op">.</span><span class="fn">json</span><span class="op">()</span>
+<span class="fn">querySelector</span> <span class="fn">addEventListener</span>
+<span class="op">&lt;</span><span class="fn">Component</span> <span class="op">/&gt;</span></div>
     </div>
     <main>
       <h1>Coming soon</h1>
