@@ -1,0 +1,88 @@
+/* Minimal dark LinkedIn-only landing page */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #161b22 0, #02040a 45%, #000 100%);
+  color: #f5f5f5;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.85);
+  color: #f9fafb;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition:
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out,
+    background-color 160ms ease-out,
+    border-color 160ms ease-out;
+}
+
+.linkedin-link::before {
+  content: "in";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-right: 0.85rem;
+  border-radius: 0.45rem;
+  background: #0a66c2;
+  color: #f9fafb;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.linkedin-link:hover,
+.linkedin-link:focus-visible {
+  background: rgba(37, 99, 235, 0.92);
+  border-color: #0ea5e9;
+  box-shadow: 0 22px 60px rgba(37, 99, 235, 0.9);
+  transform: translateY(-1px) scale(1.02);
+  outline: none;
+}
+
+.linkedin-link:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+}
+
+@media (max-width: 480px) {
+  .linkedin-link {
+    width: 100%;
+    font-size: 1.25rem;
+    padding-inline: 1.75rem;
+  }
+}
