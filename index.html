@@ -33,11 +33,18 @@
         font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
         font-size: 14px;
         line-height: 1.7;
-        color: #0f0;
+        color: #d4d4d4;
         white-space: pre;
-        text-shadow: 0 0 6px rgba(0, 255, 0, 0.6);
+        text-shadow: 0 0 6px rgba(0, 255, 0, 0.4);
         animation: codeFall 14s linear infinite;
       }
+      .code-column .kw { color: #569cd6; }
+      .code-column .fn { color: #dcdcaa; }
+      .code-column .num { color: #b5cea8; }
+      .code-column .str { color: #ce9178; }
+      .code-column .com { color: #6a9955; }
+      .code-column .op { color: #d4d4d4; }
+      .code-column .pn { color: #ffd700; }
       .code-column:nth-child(1) { left: 5%; animation-duration: 18s; animation-delay: 0s; }
       .code-column:nth-child(2) { left: 18%; animation-duration: 22s; animation-delay: -4s; }
       .code-column:nth-child(3) { left: 32%; animation-duration: 16s; animation-delay: -2s; }
@@ -74,30 +81,30 @@
   </head>
   <body>
     <div class="code-bg" aria-hidden="true">
-      <div class="code-column">const x = () => {};
-function fn() {}
-return true;
-if (a) {}
-let i = 0;
-for (;;) {}
-class C {}
-import x from '';</div>
-      <div class="code-column">=> { }
-{ } [ ]
-/* */
-0x1 null undefined</div>
-      <div class="code-column">async await
-Promise
-.then() catch
-throw new</div>
-      <div class="code-column">{ } &lt;&gt;
-( ) " ' `</div>
-      <div class="code-column">export default
-import from '.'</div>
-      <div class="code-column">true false
-1 0 [] {}</div>
-      <div class="code-column">fn() =>
-&lt;/</div>
+      <div class="code-column"><span class="kw">const</span> <span class="fn">x</span> <span class="op">=</span> <span class="op">()</span> <span class="op">=></span> <span class="op">{};</span>
+<span class="kw">function</span> <span class="fn">fn</span><span class="op">()</span> <span class="op">{}</span>
+<span class="kw">return</span> <span class="kw">true</span><span class="op">;</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fn">a</span><span class="op">)</span> <span class="op">{}</span>
+<span class="kw">let</span> <span class="fn">i</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+<span class="kw">for</span> <span class="op">(;;)</span> <span class="op">{}</span>
+<span class="kw">class</span> <span class="fn">C</span> <span class="op">{}</span>
+<span class="kw">import</span> <span class="fn">x</span> <span class="kw">from</span> <span class="str">''</span><span class="op">;</span></div>
+      <div class="code-column"><span class="op">=></span> <span class="op">{ }</span>
+<span class="op">{ }</span> <span class="op">[ ]</span>
+<span class="com">/* */</span>
+<span class="num">0x1</span> <span class="kw">null</span> <span class="kw">undefined</span></div>
+      <div class="code-column"><span class="kw">async</span> <span class="kw">await</span>
+<span class="fn">Promise</span>
+<span class="op">.</span><span class="fn">then</span><span class="op">()</span> <span class="kw">catch</span>
+<span class="kw">throw</span> <span class="kw">new</span></div>
+      <div class="code-column"><span class="op">{ }</span> <span class="op">&lt;&gt;</span>
+<span class="op">( )</span> <span class="str">" '</span> <span class="str">`</span></div>
+      <div class="code-column"><span class="kw">export</span> <span class="kw">default</span>
+<span class="kw">import</span> <span class="kw">from</span> <span class="op">'.'</span></div>
+      <div class="code-column"><span class="kw">true</span> <span class="kw">false</span>
+<span class="num">1</span> <span class="num">0</span> <span class="op">[]</span> <span class="op">{}</span></div>
+      <div class="code-column"><span class="fn">fn</span><span class="op">()</span> <span class="op">=></span>
+<span class="op">&lt;/</span></div>
     </div>
     <main>
       <h1>Coming soon</h1>
