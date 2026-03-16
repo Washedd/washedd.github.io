@@ -2,6 +2,8 @@
   const widget = document.querySelector(".github-widget");
   const listEl = document.getElementById("github-commits");
   const linkEl = document.querySelector(".github-widget-link");
+  const commits7dEl = document.getElementById("github-commits-7d");
+  const commits30dEl = document.getElementById("github-commits-30d");
   if (!widget || !listEl) return;
 
   const username = widget.dataset.githubUser;
@@ -44,9 +46,15 @@
     return div.innerHTML;
   }
 
+  function updateCommitRates(count7d, count30d) {
+    if (commits7dEl) commits7dEl.textContent = String(count7d);
+    if (commits30dEl) commits30dEl.textContent = String(count30d);
+  }
+
   function showError() {
     listEl.innerHTML =
       '<li class="github-commit-item github-widget-error">Could not load commits.</li>';
+    updateCommitRates("—", "—");
   }
 
   fetch("https://api.github.com/users/" + username + "/events/public")
@@ -73,6 +81,12 @@
           });
         }
       }
+      const now = Date.now();
+      const sevenDaysAgo = now - 7 * 24 * 60 * 60 * 1000;
+      const thirtyDaysAgo = now - 30 * 24 * 60 * 60 * 1000;
+      const count7d = commits.filter((c) => new Date(c.date).getTime() >= sevenDaysAgo).length;
+      const count30d = commits.filter((c) => new Date(c.date).getTime() >= thirtyDaysAgo).length;
+      updateCommitRates(count7d, count30d);
       render(commits);
     })
     .catch(showError);

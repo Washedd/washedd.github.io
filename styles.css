@@ -29,6 +29,14 @@ body {
   padding: 1.5rem;
 }
 
+.profile-name {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: #f9fafb;
+  letter-spacing: 0.02em;
+}
+
 .linkedin-link {
   display: inline-flex;
   align-items: center;
@@ -94,10 +102,33 @@ body {
 }
 
 .github-widget-title {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   font-size: 1.1rem;
   font-weight: 600;
   color: #e2e8f0;
+}
+
+.github-commit-rates {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.github-commit-rate {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.github-commit-rate:last-child {
+  margin-bottom: 0;
+}
+
+.github-widget-subtitle {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #94a3b8;
 }
 
 .github-commit-list {
@@ -166,6 +197,98 @@ body {
 
 .github-widget-link:hover {
   text-decoration: underline;
+}
+
+/* GitHub contribution graph */
+.github-contribution-graph {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.github-contribution-summary {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.github-contribution-grid {
+  margin-bottom: 0.5rem;
+  font-size: 10px;
+  color: #8b949e;
+}
+
+.github-contribution-month {
+  grid-row: 1;
+  line-height: 16px;
+}
+
+.github-contribution-day-label {
+  grid-column: 1;
+  line-height: 10px;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+.github-contribution-cell {
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 2px;
+  background-color: #21262d;
+}
+
+.github-contribution-cell.level-0 {
+  background-color: #21262d;
+}
+
+.github-contribution-cell.level-1 {
+  background-color: #0e4429;
+}
+
+.github-contribution-cell.level-2 {
+  background-color: #006d32;
+}
+
+.github-contribution-cell.level-3 {
+  background-color: #26a641;
+}
+
+.github-contribution-cell.level-4 {
+  background-color: #39d353;
+}
+
+.github-contribution-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #8b949e;
+}
+
+.github-contribution-legend-squares {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.github-contribution-legend-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.github-contribution-legend-cell.level-0 { background-color: #21262d; }
+.github-contribution-legend-cell.level-1 { background-color: #0e4429; }
+.github-contribution-legend-cell.level-2 { background-color: #006d32; }
+.github-contribution-legend-cell.level-3 { background-color: #26a641; }
+.github-contribution-legend-cell.level-4 { background-color: #39d353; }
+
+.github-contribution-error {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #94a3b8;
 }
 
 @media (max-width: 480px) {

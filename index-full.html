@@ -13,6 +13,7 @@
   </head>
   <body>
     <main class="page" aria-label="Ethan Byrne profile link">
+      <h1 class="profile-name">Ethan Byrne</h1>
       <a
         class="linkedin-link"
         href="https://www.linkedin.com/in/ethan-byrne-a1959a244"
@@ -25,13 +26,43 @@
       <section
         class="github-widget"
         aria-label="Recent GitHub commits"
-        data-github-user="EthanByrne"
+        data-github-user="Washedd"
       >
-        <h2 class="github-widget-title">Recent commits</h2>
+        <h2 class="github-widget-title">GitHub activity</h2>
+        <div class="github-commit-rates" aria-label="Commit counts">
+          <p class="github-commit-rate">
+            Last 7 days: <span id="github-commits-7d" aria-live="polite">—</span> commits
+          </p>
+          <p class="github-commit-rate">
+            Last 30 days: <span id="github-commits-30d" aria-live="polite">—</span> commits
+          </p>
+        </div>
+        <div
+          class="github-contribution-graph"
+          aria-label="Contributions in the last year"
+          data-github-user="Washedd"
+        >
+          <p class="github-contribution-summary">
+            <span id="github-contribution-total">—</span> contributions in the last year
+          </p>
+          <div class="github-contribution-grid" id="github-contribution-grid" role="img"></div>
+          <p class="github-contribution-legend">
+            <span class="github-contribution-legend-label">Less</span>
+            <span class="github-contribution-legend-squares" aria-hidden="true">
+              <span class="github-contribution-legend-cell level-0"></span>
+              <span class="github-contribution-legend-cell level-1"></span>
+              <span class="github-contribution-legend-cell level-2"></span>
+              <span class="github-contribution-legend-cell level-3"></span>
+              <span class="github-contribution-legend-cell level-4"></span>
+            </span>
+            <span class="github-contribution-legend-label">More</span>
+          </p>
+        </div>
+        <h3 class="github-widget-subtitle">Recent commits</h3>
         <ul class="github-commit-list" id="github-commits"></ul>
         <a
           class="github-widget-link"
-          href="https://github.com/EthanByrne"
+          href="https://github.com/Washedd"
           target="_blank"
           rel="noreferrer noopener"
         >
@@ -40,5 +71,6 @@
       </section>
     </main>
     <script src="github-widget.js"></script>
+    <script src="github-contribution-graph.js"></script>
   </body>
 </html>
