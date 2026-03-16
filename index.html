@@ -217,6 +217,27 @@
           });
         }
 
+        function isMobile() {
+          var touch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+          var narrow = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+          return touch && narrow;
+        }
+
+        function getDeviceSnippet() {
+          var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+          var ua = navigator.userAgent || '';
+          var uaShort = ua.length > 40 ? ua.slice(0, 40) + '\u2026' : ua;
+          var platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || 'unknown';
+          var vw = window.innerWidth;
+          var vh = window.innerHeight;
+          return '<span class="com">// Device / browser</span>\n' +
+            '<span class="kw">const</span> <span class="fn">device</span> <span class="op">=</span> <span class="op">{</span>\n  ' +
+            '<span class="fn">platform</span><span class="op">:</span> <span class="str">\'' + esc(platform) + '\'</span><span class="op">,</span>\n  ' +
+            '<span class="fn">userAgent</span><span class="op">:</span> <span class="str">\'' + esc(uaShort) + '\'</span><span class="op">,</span>\n  ' +
+            '<span class="fn">viewport</span><span class="op">:</span> <span class="str">\'' + vw + '\u00d7' + vh + '\'</span>\n' +
+            '<span class="op">};</span>';
+        }
+
         var snippets = {
           idle: '<span class="com">// Waiting for input...</span>\n<span class="kw">const</span> <span class="fn">waitingForInput</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>',
           mousemove: function (x, y) {
@@ -234,7 +255,7 @@
         function scheduleIdle() {
           if (idleTimer) clearTimeout(idleTimer);
           idleTimer = setTimeout(function () {
-            setHtml(snippets.idle);
+            setHtml(isMobile() ? getDeviceSnippet() : snippets.idle);
             idleTimer = null;
           }, IDLE_MS);
         }
@@ -257,6 +278,9 @@
           scheduleIdle();
         });
 
+        if (isMobile()) {
+          setHtml(getDeviceSnippet());
+        }
         scheduleIdle();
       })();
     </script>
