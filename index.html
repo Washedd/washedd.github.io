@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Coming soon." />
     <title>Coming soon</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <style>
       * { box-sizing: border-box; }
       body {
@@ -25,17 +24,19 @@
         inset: 0;
         z-index: 0;
         overflow: hidden;
-        opacity: 0.15;
+        opacity: 0.35;
+        pointer-events: none;
       }
       .code-column {
         position: absolute;
-        top: -100%;
+        top: -120vh;
         font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
-        font-size: 12px;
-        line-height: 1.6;
+        font-size: 14px;
+        line-height: 1.7;
         color: #0f0;
         white-space: pre;
-        animation: codeFall 20s linear infinite;
+        text-shadow: 0 0 6px rgba(0, 255, 0, 0.6);
+        animation: codeFall 14s linear infinite;
       }
       .code-column:nth-child(1) { left: 5%; animation-duration: 18s; animation-delay: 0s; }
       .code-column:nth-child(2) { left: 18%; animation-duration: 22s; animation-delay: -4s; }
@@ -45,7 +46,12 @@
       .code-column:nth-child(6) { left: 78%; animation-duration: 21s; animation-delay: -5s; }
       .code-column:nth-child(7) { left: 90%; animation-duration: 17s; animation-delay: -3s; }
       @keyframes codeFall {
-        to { transform: translateY(200%); }
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(220vh);
+        }
       }
       main {
         text-align: center;
