@@ -8,28 +8,33 @@ interface Props {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const stats = await fetchRepoStats(project.data.repo);
+const isPrivate = project.data.private;
+const stats = isPrivate ? null : await fetchRepoStats(project.data.repo);
 const language = stats?.language ?? project.data.language;
 const stars = stats?.stars ?? 0;
-const repoUrl = `https://github.com/${project.data.repo}`;
+const repoUrl = !isPrivate && project.data.repo ? `https://github.com/${project.data.repo}` : undefined;
 ---
 
 <article class="project-card">
   <h2>{project.data.title}</h2>
   <p>{project.data.description}</p>
   <div class="project-meta">
+    {isPrivate ? <span class="tag">Private</span> : null}
+    {project.data.collaboration ? <span class="tag">Collaboration</span> : null}
     {language ? <span class="tag">{language}</span> : null}
     {project.data.tags.map((tag) => <span class="tag">{tag}</span>)}
     {stars > 0 ? <span class="tag">{stars}★</span> : null}
   </div>
   <Content />
-  <p>
-    <a href={repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
-    {project.data.homepage ? (
-      <>
-        {' · '}
+  {repoUrl || project.data.homepage ? (
+    <p>
+      {repoUrl ? (
+        <a href={repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+      ) : null}
+      {repoUrl && project.data.homepage ? ' · ' : null}
+      {project.data.homepage ? (
         <a href={project.data.homepage} target="_blank" rel="noopener noreferrer">Homepage</a>
-      </>
-    ) : null}
-  </p>
+      ) : null}
+    </p>
+  ) : null}
 </article>

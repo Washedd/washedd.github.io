@@ -29,20 +29,22 @@ export async function buildSitePayload(): Promise<SitePayload> {
 
   const projectChildren: Record<string, FsNode> = {};
   for (const project of projects) {
-    const stats = await fetchRepoStats(project.data.repo);
+    const isPrivate = project.data.private;
+    const stats = isPrivate ? null : await fetchRepoStats(project.data.repo);
     const language = stats?.language ?? project.data.language ?? 'unknown';
     const stars = stats?.stars ?? 0;
-    const href = `https://github.com/${project.data.repo}`;
+    const href = !isPrivate && project.data.repo ? `https://github.com/${project.data.repo}` : undefined;
     const meta = [
       `# ${project.data.title}`,
       '',
       collectionBody(project),
       '',
       `# github`,
-      `repo: ${project.data.repo}`,
+      `visibility: ${isPrivate ? 'private' : 'public'}`,
+      project.data.repo ? `repo: ${project.data.repo}` : 'repo: (unlisted)',
       `language: ${language}`,
       `stars: ${stars}`,
-      `url: ${href}`,
+      href ? `url: ${href}` : 'url: (not public)',
     ].join('\n');
     projectChildren[`${project.id}.md`] = file(meta, href);
   }

@@ -4,17 +4,25 @@ import ProjectCard from '../components/ProjectCard.astro';
 import Window from '../components/Window.astro';
 import Desktop from '../layouts/Desktop.astro';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const projects = (await getCollection('projects')).sort((a, b) => {
+  if (a.data.private !== b.data.private) {
+    return a.data.private ? 1 : -1;
+  }
+  if (a.data.collaboration !== b.data.collaboration) {
+    return a.data.collaboration ? 1 : -1;
+  }
+  return a.data.title.localeCompare(b.data.title);
+});
 ---
 
 <Desktop
   active="projects"
   title="Projects · Ethan Byrne"
-  description="Projects by Ethan Byrne — rustplusplus, Jeva, and more."
+  description="Public and private projects by Ethan Byrne — Discord bots, FiveM, trading tools, and this site."
 >
   <Window id="window-projects" title="~/projects" open overlay closeHref="/">
     <h1>Projects</h1>
-    <p>Same files as <code>ls ~/projects</code> in the terminal.</p>
+    <p>Same files as <code>ls ~/projects</code> in the terminal. Public repos link to GitHub; private work is listed by name only.</p>
     <div class="project-list">
       {projects.map((project) => <ProjectCard project={project} />)}
     </div>

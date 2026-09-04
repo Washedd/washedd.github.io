@@ -14,7 +14,9 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    repo: z.string(),
+    repo: z.string().optional(),
+    private: z.boolean().default(false),
+    collaboration: z.boolean().default(false),
     tags: z.array(z.string()),
     language: z.string().optional(),
     homepage: z.string().url().optional(),

@@ -9,7 +9,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
 }
 
-export async function fetchRepoStats(repo: string): Promise<RepoStats | null> {
+export async function fetchRepoStats(repo?: string): Promise<RepoStats | null> {
+  if (!repo) {
+    return null;
+  }
   try {
     const response = await fetch(`https://api.github.com/repos/${repo}`, {
       headers: {
