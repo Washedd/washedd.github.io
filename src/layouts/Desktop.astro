@@ -1,0 +1,87 @@
+---
+import Boot from '../components/Boot.astro';
+import CommandChips from '../components/CommandChips.astro';
+import Dock from '../components/Dock.astro';
+import StatusBar from '../components/StatusBar.astro';
+import Terminal from '../components/Terminal.astro';
+import Window from '../components/Window.astro';
+import { buildSitePayload } from '../lib/site';
+import { SITE } from '../lib/types';
+import type { ActiveWindow } from '../lib/types';
+import '../styles/global.css';
+
+interface Props {
+  active: ActiveWindow;
+  title: string;
+  description: string;
+}
+
+const { active, title, description } = Astro.props;
+const payload = await buildSitePayload();
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url);
+const ogImage = new URL('/og.svg', Astro.site ?? SITE.url).href;
+const payloadJson = JSON.stringify(payload).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script is:inline>
+      (function () {
+        try {
+          var theme = localStorage.getItem('ethanos-theme');
+          if (theme === 'crt' || theme === 'dark') {
+            document.documentElement.dataset.theme = theme;
+          }
+        } catch (error) {
+          return;
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#term-input">Skip to terminal</a>
+    <div class="desktop">
+      <StatusBar user={payload.user} host={payload.host} cwd="~" />
+      <div class="stage">
+        <Window id="window-terminal" title={`${payload.user}@${payload.host} — terminal`} open>
+          <Terminal user={payload.user} host={payload.host} cwd="~" />
+        </Window>
+        <slot />
+      </div>
+      <CommandChips />
+      <Dock active={active} github={payload.github} />
+    </div>
+    <Boot />
+    <noscript>
+      <article class="os-window is-open overlay-window" style="position: static; margin: 1rem auto; max-width: 720px;">
+        <div class="window-body">
+          <h1>Ethan Byrne</h1>
+          <p>Developer. The terminal needs JavaScript; these pages do not.</p>
+          <p>
+            <a href="/about">About</a> · <a href="/projects">Projects</a> · <a href="/contact">Contact</a>
+          </p>
+        </div>
+      </article>
+    </noscript>
+    <script is:inline type="application/json" id="ethanos-data" set:html={payloadJson} />
+    <script>
+      import '../scripts/desktop';
+    </script>
+  </body>
+</html>

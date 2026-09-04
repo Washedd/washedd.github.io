@@ -1,0 +1,17 @@
+---
+import { getEntry, render } from 'astro:content';
+import Window from '../components/Window.astro';
+import Desktop from '../layouts/Desktop.astro';
+
+const contact = await getEntry('pages', 'contact');
+if (!contact) {
+  throw new Error('Missing contact content');
+}
+const { Content } = await render(contact);
+---
+
+<Desktop active="contact" title={`${contact.data.title} · Ethan Byrne`} description={contact.data.description}>
+  <Window id="window-contact" title="contact.md" open overlay closeHref="/">
+    <Content />
+  </Window>
+</Desktop>

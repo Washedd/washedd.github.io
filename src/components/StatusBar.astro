@@ -1,0 +1,18 @@
+---
+interface Props {
+  user: string;
+  host: string;
+  cwd: string;
+}
+
+const { user, host, cwd } = Astro.props;
+---
+
+<header class="status-bar">
+  <strong class="host-label">{user}@{host}</strong>
+  <span class="cwd" id="os-cwd">{cwd}</span>
+  <div class="status-meta">
+    <span id="os-battery" title="Battery">87%</span>
+    <time id="os-clock" datetime=""></time>
+  </div>
+</header>

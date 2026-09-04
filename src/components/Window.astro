@@ -1,0 +1,34 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  open?: boolean;
+  overlay?: boolean;
+  closeHref?: string;
+}
+
+const { id, title, open = false, overlay = false, closeHref } = Astro.props;
+---
+
+<section
+  class:list={['os-window', { 'is-open': open, 'overlay-window': overlay, 'terminal-window': !overlay }]}
+  id={id}
+  data-window={id}
+>
+  <header class="title-bar">
+    <span class="traffic" aria-hidden="true">
+      <i class="close"></i>
+      <i class="min"></i>
+      <i class="max"></i>
+    </span>
+    <span class="title">{title}</span>
+    {closeHref ? (
+      <a class="win-close" href={closeHref} aria-label="Close window">×</a>
+    ) : (
+      <span class="win-close" aria-hidden="true"></span>
+    )}
+  </header>
+  <div class="window-body">
+    <slot />
+  </div>
+</section>

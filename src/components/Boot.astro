@@ -1,0 +1,13 @@
+---
+const lines = [
+  'ethanOS v1.0',
+  'Loading kernel .............. ok',
+  'Mounting /home/ethan ........ ok',
+  'Starting tty0 ............... ok',
+];
+---
+
+<div class="boot" id="boot-screen" role="dialog" aria-label="ethanOS boot">
+  <pre id="boot-log" data-lines={JSON.stringify(lines)}></pre>
+  <p class="skip">Press any key or click to skip</p>
+</div>

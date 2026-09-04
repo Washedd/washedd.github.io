@@ -1,0 +1,35 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { fetchRepoStats } from '../lib/github';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const stats = await fetchRepoStats(project.data.repo);
+const language = stats?.language ?? project.data.language;
+const stars = stats?.stars ?? 0;
+const repoUrl = `https://github.com/${project.data.repo}`;
+---
+
+<article class="project-card">
+  <h2>{project.data.title}</h2>
+  <p>{project.data.description}</p>
+  <div class="project-meta">
+    {language ? <span class="tag">{language}</span> : null}
+    {project.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+    {stars > 0 ? <span class="tag">{stars}★</span> : null}
+  </div>
+  <Content />
+  <p>
+    <a href={repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+    {project.data.homepage ? (
+      <>
+        {' · '}
+        <a href={project.data.homepage} target="_blank" rel="noopener noreferrer">Homepage</a>
+      </>
+    ) : null}
+  </p>
+</article>

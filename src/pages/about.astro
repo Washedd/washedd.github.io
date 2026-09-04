@@ -1,0 +1,17 @@
+---
+import { getEntry, render } from 'astro:content';
+import Window from '../components/Window.astro';
+import Desktop from '../layouts/Desktop.astro';
+
+const about = await getEntry('pages', 'about');
+if (!about) {
+  throw new Error('Missing about content');
+}
+const { Content } = await render(about);
+---
+
+<Desktop active="about" title={`${about.data.title} · Ethan Byrne`} description={about.data.description}>
+  <Window id="window-about" title="about.md" open overlay closeHref="/">
+    <Content />
+  </Window>
+</Desktop>
