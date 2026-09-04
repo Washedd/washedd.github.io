@@ -3,6 +3,7 @@ title: GlacierCity
 description: Private Glacier City project files.
 private: true
 repo: Washedd/GlacierCity
+category: FiveM
 tags:
   - FiveM
   - Roleplay

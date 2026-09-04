@@ -2,6 +2,8 @@
 title: Jeva
 description: Scripts and code used through Jeva FiveM videos and tutorials.
 repo: Washedd/Jeva
+featured: true
+category: FiveM
 tags:
   - FiveM
   - JavaScript

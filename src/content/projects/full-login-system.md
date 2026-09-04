@@ -3,6 +3,7 @@ title: FullLoginSystem
 description: Private Python login/auth system.
 private: true
 repo: Washedd/FullLoginSystem
+category: Python
 tags:
   - Python
   - Auth

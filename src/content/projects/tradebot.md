@@ -3,6 +3,7 @@ title: TradeBot
 description: Private trading bot UI and tooling.
 private: true
 repo: Washedd/TradeBot
+category: Trading
 tags:
   - Trading
   - Bot

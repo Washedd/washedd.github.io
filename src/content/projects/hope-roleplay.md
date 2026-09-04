@@ -4,6 +4,7 @@ description: Private FiveM roleplay server files (collaboration).
 private: true
 collaboration: true
 repo: gabbismells/Hope-Roleplay
+category: FiveM
 tags:
   - FiveM
   - Lua

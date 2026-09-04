@@ -3,6 +3,7 @@ title: EthanByrneNEA
 description: Private Computer Science NEA project.
 private: true
 repo: Washedd/EthanByrneNEA
+category: Coursework
 tags:
   - Python
   - Coursework

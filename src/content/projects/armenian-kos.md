@@ -3,6 +3,7 @@ title: ArmenianKOS
 description: Private JavaScript project.
 private: true
 repo: Washedd/ArmenianKOS
+category: JavaScript
 tags:
   - JavaScript
 language: JavaScript

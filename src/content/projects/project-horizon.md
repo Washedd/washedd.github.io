@@ -3,6 +3,8 @@ title: ProjectHorizon
 description: Private FiveM / Lua roleplay project.
 private: true
 repo: Washedd/ProjectHorizon
+featured: true
+category: FiveM
 tags:
   - FiveM
   - Lua

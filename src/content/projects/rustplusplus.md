@@ -2,6 +2,8 @@
 title: rustplusplus
 description: A Node.js Discord bot that talks to the Rust+ companion app, with extra quality-of-life features.
 repo: Washedd/rustplusplus
+featured: true
+category: Discord
 tags:
   - Node.js
   - Discord

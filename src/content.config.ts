@@ -17,6 +17,8 @@ const projects = defineCollection({
     repo: z.string().optional(),
     private: z.boolean().default(false),
     collaboration: z.boolean().default(false),
+    featured: z.boolean().default(false),
+    category: z.string(),
     tags: z.array(z.string()),
     language: z.string().optional(),
     homepage: z.string().url().optional(),

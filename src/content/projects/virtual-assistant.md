@@ -3,6 +3,7 @@ title: VirtualAssistant
 description: A private virtual assistant, written in Python.
 private: true
 repo: Washedd/VirtualAssistant
+category: Python
 tags:
   - Python
   - Assistant

@@ -4,6 +4,7 @@ description: Private Discord bot (collaboration).
 private: true
 collaboration: true
 repo: JohanisMcGee/DiscordBot
+category: Discord
 tags:
   - Discord
   - Bot

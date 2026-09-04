@@ -19,7 +19,7 @@ interface Props {
 const { active, title, description } = Astro.props;
 const payload = await buildSitePayload();
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url);
-const ogImage = new URL('/og.svg', Astro.site ?? SITE.url).href;
+const ogImage = new URL('/og.png', Astro.site ?? SITE.url).href;
 const payloadJson = JSON.stringify(payload).replace(/</g, '\\u003c');
 ---
 

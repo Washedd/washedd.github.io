@@ -3,6 +3,7 @@ title: webApp
 description: Private HTML web app.
 private: true
 repo: Washedd/webApp
+category: Web
 tags:
   - HTML
   - Web

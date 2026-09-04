@@ -1,0 +1,21 @@
+---
+import Window from '../components/Window.astro';
+import Desktop from '../layouts/Desktop.astro';
+---
+
+<Desktop
+  active="missing"
+  title="Page not found · Ethan Byrne"
+  description="That path is not on ethanbyrne.co.uk."
+>
+  <Window id="window-404" title="404" open overlay closeHref="/">
+    <h1>Page not found</h1>
+    <p>Nothing is mounted at this path.</p>
+    <p>
+      <a href="/">Home</a> ·
+      <a href="/about">About</a> ·
+      <a href="/projects">Projects</a> ·
+      <a href="/contact">Contact</a>
+    </p>
+  </Window>
+</Desktop>

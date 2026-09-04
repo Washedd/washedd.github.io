@@ -3,6 +3,7 @@ title: CompSci
 description: Private Computer Science class / coursework pages.
 private: true
 repo: Washedd/CompSci
+category: Coursework
 tags:
   - HTML
   - Coursework

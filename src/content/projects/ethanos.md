@@ -2,6 +2,8 @@
 title: ethanOS
 description: This site — a terminal-first desktop portfolio built with Astro and GitHub Pages.
 repo: Washedd/washedd.github.io
+featured: true
+category: Web
 tags:
   - Astro
   - TypeScript

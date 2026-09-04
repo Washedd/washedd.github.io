@@ -3,6 +3,7 @@ title: GlacierDiscord
 description: Private Discord bot for Glacier City RP.
 private: true
 repo: Washedd/GlacierDiscord
+category: Discord
 tags:
   - Discord
   - FiveM

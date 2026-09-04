@@ -3,6 +3,7 @@ title: Discord-Bots
 description: Private collection of Discord bots.
 private: true
 repo: Washedd/Discord-Bots
+category: Discord
 tags:
   - Discord
   - Bot

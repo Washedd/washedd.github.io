@@ -70,7 +70,7 @@ export type SitePayload = {
   fs: FsDir;
 };
 
-export type ActiveWindow = 'home' | 'about' | 'projects' | 'contact';
+export type ActiveWindow = 'home' | 'about' | 'projects' | 'contact' | 'missing';
 
 export type TermState = {
   cwd: string;

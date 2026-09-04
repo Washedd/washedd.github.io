@@ -4,6 +4,7 @@ description: Private FiveM server files for Glacier City RP (collaboration).
 private: true
 collaboration: true
 repo: proxlad20/GlacierCityRP
+category: FiveM
 tags:
   - FiveM
   - Lua

@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+---
+
+<li class="archive-row">
+  <span class="archive-title">{project.data.title}</span>
+  <span class="archive-meta">
+    <span class="tag">{project.data.category}</span>
+    {project.data.private ? <span class="tag">Private</span> : null}
+    {project.data.collaboration ? <span class="tag">Collaboration</span> : null}
+  </span>
+</li>

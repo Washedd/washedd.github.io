@@ -3,6 +3,7 @@ title: MinecraftServer
 description: Private Minecraft server scripts.
 private: true
 repo: Washedd/MinecraftServer
+category: Games
 tags:
   - Minecraft
   - Server

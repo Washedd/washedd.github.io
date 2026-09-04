@@ -3,6 +3,7 @@ title: DiscordBot
 description: Private Discord bot.
 private: true
 repo: Washedd/DiscordBot
+category: Discord
 tags:
   - Discord
   - Bot
